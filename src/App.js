@@ -1,4 +1,5 @@
 import React from 'react';
+import { BASE_URL } from './constants.js'
 import logo from './logo.svg';
 import './App.css';
 
@@ -8,7 +9,7 @@ class App extends React.Component {
 
   }
   componentDidMount() {
-    fetch('sessions')
+    fetch(`${BASE_URL}/sessions`)
     .then(response => response.json())
     .then((sessionData) => {
       this.setState({ sessions: [sessionData]})
@@ -19,6 +20,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1> Hello World</h1>
+
       </div>
     )
   }
