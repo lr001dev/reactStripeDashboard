@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 
-class Sessions extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <div>
-        <h1>I'm Sessions</h1>
+        <h1>I'm Home</h1>
       </div>
     )
   }
 }
-export default Sessions
+
+export default Home

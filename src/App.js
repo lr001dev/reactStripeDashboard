@@ -1,7 +1,11 @@
 import React from 'react';
 import { BASE_URL } from './constants.js'
-import { Elements, StripeProvider } from 'react-stripe-elements'
-import CheckoutForm from './components/CheckoutForm'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import Home from './components/Home'
+import Sessions from './components/Sessions'
+import Login from './components/Login'
+import SignUp from './components/SignUp'
+import Dashboard from './components/Dashboard'
 import logo from './logo.svg';
 import './App.css';
 
@@ -20,16 +24,23 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className="App">
-        <StripeProvider apiKey="pk_test_jo2pVFVVmc2UOxwH78bij2Fd">
-          <div className="example">
-            <h1>React Stripe Elements Example</h1>
-            <Elements>
-              <CheckoutForm />
-            </Elements>
-          </div>
-        </StripeProvider>
-      </div>
+      <Router>
+        <div>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/sessions">Sessions</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+          </nav>
+          <Route exact path="/" component={ Home } />
+          <Route path="/sessions" component={ Sessions } />
+          <Route path="/login" component={ Login } />
+          <Route path="/signup" component={ SignUp } />
+          <Route path="/dashboard" component={ Dashboard } />
+        </div>
+      </Router>
+
+
     )
   }
 
