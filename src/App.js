@@ -2,6 +2,8 @@ import React from 'react';
 import { BASE_URL } from './constants.js'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import { LinkContainer } from 'react-router-bootstrap'
+import Header from './components/Header'
+import Footer from './components/Footer'
 import Home from './components/Home'
 import Sessions from './components/Sessions'
 import Login from './components/Login'
@@ -26,27 +28,17 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <div>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/sessions">Sessions</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
-          </nav>
+        <Header
+          className="header"
+          sessions = {this.state.sessions}
+        />
           <Route exact path="/" component={ Home } />
-
-          <Route
-            path="/sessions"
-            render=
-            {
-              (props) => <Sessions {...props} sessions={this.state.sessions} />
-            } />
-
           <Route path="/login" component={ Login } />
           <Route path="/signup" component={ SignUp } />
           <Route path="/dashboard" component={ Dashboard } />
-        </div>
+        <Footer />
       </Router>
+
 
 
     )

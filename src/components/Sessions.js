@@ -6,6 +6,7 @@ class Sessions extends React.Component {
   render() {
     return (
       <>
+      <main>
         <Carousel>
           {
             this.props.sessions.map((theSession) => {
@@ -26,6 +27,7 @@ class Sessions extends React.Component {
               })
             }
         </Carousel>
+        </main>
       </>
     )
   }
