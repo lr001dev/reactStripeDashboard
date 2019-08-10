@@ -1,6 +1,7 @@
 import React from 'react';
 import { BASE_URL } from './constants.js'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { LinkContainer } from 'react-router-bootstrap'
 import Home from './components/Home'
 import Sessions from './components/Sessions'
 import Login from './components/Login'
@@ -18,7 +19,7 @@ class App extends React.Component {
     fetch(`${ BASE_URL }/sessions`)
     .then(response => response.json())
     .then((sessionData) => {
-      this.setState({ sessions: [sessionData]})
+      this.setState({ sessions: sessionData})
     })
     .catch(err=> console.log(err))
   }
@@ -33,7 +34,14 @@ class App extends React.Component {
             <Link to="/signup">Sign Up</Link>
           </nav>
           <Route exact path="/" component={ Home } />
-          <Route path="/sessions" component={ Sessions } />
+
+          <Route
+            path="/sessions"
+            render=
+            {
+              (props) => <Sessions {...props} sessions={this.state.sessions} />
+            } />
+
           <Route path="/login" component={ Login } />
           <Route path="/signup" component={ SignUp } />
           <Route path="/dashboard" component={ Dashboard } />
