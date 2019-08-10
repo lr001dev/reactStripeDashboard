@@ -1,10 +1,12 @@
 import React from 'react';
 import { BASE_URL } from './constants.js'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import Container from 'react-bootstrap/Container'
 import { LinkContainer } from 'react-router-bootstrap'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Home from './components/Home'
+import CreateAccount from './components/CreateAccount'
 import Sessions from './components/Sessions'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
@@ -28,18 +30,18 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Header
-          className="header"
-          sessions = {this.state.sessions}
-        />
+        <Container fluid>
+          <Header
+            sessions = {this.state.sessions}
+          />
+        </Container>
           <Route exact path="/" component={ Home } />
-          <Route path="/login" component={ Login } />
+          <Route path="/create-account" component={ CreateAccount } />
           <Route path="/signup" component={ SignUp } />
           <Route path="/dashboard" component={ Dashboard } />
         <Footer />
+
       </Router>
-
-
 
     )
   }

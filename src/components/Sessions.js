@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Session from './Session.js'
 import Carousel from 'react-bootstrap/Carousel'
 
 class Sessions extends React.Component {

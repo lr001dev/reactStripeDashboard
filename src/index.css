@@ -20,7 +20,11 @@ body {
 
   background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
 }
-
+/*
 .header {
   height: 20px;
+} */
+
+.container {
+  height: 600px;
 }

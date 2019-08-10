@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
+import Navbar from 'react-bootstrap/Navbar'
+import { Form, Col } from 'react-bootstrap'
 
 class Login extends React.Component {
   render() {
     return (
-      <div>
-        <h1>I'm Login</h1>
-      </div>
+      <Form>
+        <Form.Row>
+          <Col>
+            <Form.Control placeholder="username" />
+          </Col>
+          <Col>
+            <Form.Control placeholder="password" />
+          </Col>
+        </Form.Row>
+      </Form>
     )
   }
 }
