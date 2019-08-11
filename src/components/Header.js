@@ -26,7 +26,9 @@ class Header extends React.Component {
               <Nav.Link to="/create-account">Create Account</Nav.Link>
               <Nav.Link to="/signup">Sign Up</Nav.Link>
             </Nav>
-            <Login />
+            <Login
+              loginInUser = { this.props.loginInUser }
+            />
             </Navbar>
         <Sessions
           sessions = { this.props.sessions }

@@ -8,15 +8,15 @@ class Sessions extends React.Component {
       <main>
         <Carousel>
           {
-            this.props.sessions.map((theSession) => {
+            this.props.sessions.map((theSession, index) => {
               return(
-                <Carousel.Item>
+                <Carousel.Item key={index} >
                   <img
                   className="d-block w-100"
                   src={theSession.img_url}
                   alt="First slide"
                   />
-                <Carousel.Caption>
+                <Carousel.Caption key={index} >
                   <h3>{theSession.name}</h3>
                   <h4>{theSession.modality}</h4>
                   <p>{theSession.description}</p>

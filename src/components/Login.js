@@ -1,18 +1,57 @@
 import React, { Component } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
-import { Form, Col } from 'react-bootstrap'
+import { Form, Col, Button } from 'react-bootstrap'
 
 class Login extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+        username: '',
+        password: ''
+    }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+  handleChange (event) {
+      this.setState({[event.target.id] : event.target.value})
+    }
+
+  handleSubmit (event, formInputs) {
+    event.preventDefault()
+    const loginFormInputs = {
+      user: {
+        username: this.state.username,
+        password: this.state.password
+      }
+    }
+    this.props.loginInUser(loginFormInputs)
+  }
+
   render() {
     return (
-      <Form>
+      <Form onSubmit={this.handleSubmit}>
         <Form.Row>
           <Col>
-            <Form.Control placeholder="username" />
+            <Form.Control
+              id="username"
+              type="text"
+              onChange={ this.handleChange }
+              value= { this.state.username }
+              placeholder="username"
+            />
           </Col>
           <Col>
-            <Form.Control placeholder="password" />
+            <Form.Control
+              id="password"
+              type="text"
+              onChange={ this.handleChange }
+              value= { this.state.password }
+              placeholder="password"
+            />
           </Col>
+        </Form.Row>
+        <Form.Row>
+          <Button variant="primary" type="submit">Login</Button>
         </Form.Row>
       </Form>
     )

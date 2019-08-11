@@ -20,6 +20,10 @@ class App extends React.Component {
 
   }
   componentDidMount() {
+    this.getSessions()
+  }
+
+  getSessions() {
     fetch(`${ BASE_URL }/sessions`)
     .then(response => response.json())
     .then((sessionData) => {
@@ -27,12 +31,18 @@ class App extends React.Component {
     })
     .catch(err=> console.log(err))
   }
+
+  loginInUser = (formInputs) => {
+    console.log(formInputs)
+  }
+
   render() {
     return (
       <Router>
         <Container fluid>
           <Header
-            sessions = {this.state.sessions}
+            sessions = { this.state.sessions }
+            loginInUser = { this.loginInUser }
           />
         </Container>
           <Route exact path="/" component={ Home } />
