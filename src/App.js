@@ -32,7 +32,7 @@ class App extends React.Component {
     .catch(err=> console.log(err))
   }
 
-  loginInUser = (formInputs) => {
+  loginTheUser = (formInputs) => {
     console.log(formInputs)
   }
 
@@ -42,7 +42,7 @@ class App extends React.Component {
         <Container fluid>
           <Header
             sessions = { this.state.sessions }
-            loginInUser = { this.loginInUser }
+            loginTheUser = { this.loginTheUser }
           />
         </Container>
           <Route exact path="/" component={ Home } />

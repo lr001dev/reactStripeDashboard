@@ -5,8 +5,6 @@ import { Link } from "react-router-dom"
 import { Navbar, Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-
-
 class Header extends React.Component {
   render() {
     return (
@@ -27,7 +25,7 @@ class Header extends React.Component {
               <Nav.Link to="/signup">Sign Up</Nav.Link>
             </Nav>
             <Login
-              loginInUser = { this.props.loginInUser }
+              loginInUser = { this.props.loginTheUser }
             />
             </Navbar>
         <Sessions

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Navbar from 'react-bootstrap/Navbar'
 import { Form, Col, Button } from 'react-bootstrap'
 
 class Login extends React.Component {
@@ -24,7 +23,7 @@ class Login extends React.Component {
         password: this.state.password
       }
     }
-    this.props.loginInUser(loginFormInputs)
+    this.props.loginTheUser(loginFormInputs)
   }
 
   render() {
