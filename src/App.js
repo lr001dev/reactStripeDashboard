@@ -1,7 +1,6 @@
 import React from 'react';
 import { BASE_URL } from './constants.js'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-import Container from 'react-bootstrap/Container'
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom"
 import { LinkContainer } from 'react-router-bootstrap'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -16,7 +15,7 @@ import './App.css';
 
 class App extends React.Component {
   state = {
-    sessions: []
+    sessions: [],
 
   }
   componentDidMount() {
@@ -33,27 +32,42 @@ class App extends React.Component {
   }
 
   loginTheUser = (formInputs) => {
-    console.log(formInputs)
+    fetch(`${ BASE_URL }/users/login`, {
+      body: JSON.stringify(formInputs),
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-type': 'application/json'
+      }
+    })
+      .then(userIsLoggedIn => this.setState({ user: userIsLoggedIn.json() }))
+      .catch(error=> console.log(error))
   }
 
   render() {
-    return (
-      <Router>
-        <Container fluid>
+
+    if(this.state.user) {
+      return(
+        <Router>
+          <Redirect to='/dashboard' currentUser= { this.state.user } />
+          <Route path="/dashboard" component= { Dashboard } />
+        </Router>
+      )
+    } else {
+      return (
+        <Router>
           <Header
             sessions = { this.state.sessions }
             loginTheUser = { this.loginTheUser }
           />
-        </Container>
           <Route exact path="/" component={ Home } />
           <Route path="/create-account" component={ CreateAccount } />
           <Route path="/signup" component={ SignUp } />
-          <Route path="/dashboard" component={ Dashboard } />
-        <Footer />
-
-      </Router>
-
-    )
+          <Footer />
+        </Router>
+      )
+    }
   }
 
 }

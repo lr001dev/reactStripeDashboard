@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import Login from './Login'
 import Sessions from './Sessions'
 import { Link } from "react-router-dom"
-import { Navbar, Nav } from 'react-bootstrap'
+import { Container, Navbar, Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
 class Header extends React.Component {
   render() {
     return (
-      <>
+      <Container fluid>
         <Navbar fixed="top" bg="dark" variant="dark">
           <Nav className="mr-auto">
             <Navbar.Brand  href="#home">
@@ -20,18 +20,19 @@ class Header extends React.Component {
                 className="d-inline-block align-top"
                 />
               </Navbar.Brand>
-              <Nav.Link to="/">Home</Nav.Link>
-              <Nav.Link to="/create-account">Create Account</Nav.Link>
-              <Nav.Link to="/signup">Sign Up</Nav.Link>
+              <Link to="/">Home</Link>
+              <Link to="/create-account">Create Account</Link>
+              <Link to="/signup">Sign Up</Link>
             </Nav>
             <Login
-              loginInUser = { this.props.loginTheUser }
+              loginTheUser = { this.props.loginTheUser }
             />
             </Navbar>
-        <Sessions
-          sessions = { this.props.sessions }
-        />
-      </>
+            <Sessions
+              sessions = { this.props.sessions }
+            />
+          </Container>
+
     )
   }
 }
