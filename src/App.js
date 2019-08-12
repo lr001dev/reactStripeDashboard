@@ -71,7 +71,10 @@ class App extends React.Component {
           <Redirect to='/dashboard' />
           <Route
             path="/dashboard"
-            render= { (props) => <Dashboard { ...props } currentUser= { this.state.user } /> }
+            render= { (props) => <Dashboard { ...props }
+            currentUser= { this.state.user }
+            sessions= { this.state.sessions }
+          /> }
           />
         </Router>
       )

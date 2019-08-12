@@ -4,9 +4,24 @@ import { BrowserRouter as Router, Redirect, Route} from "react-router-dom"
 
 class Dashboard extends React.Component {
   state = {
-
+    currentUser: '',
+    sessions: this.props.sessions,
+    members:''
   }
+
   componentDidMount() {
+    this.getUser()
+    this.getUsers()
+  }
+
+  getUser() {
+    fetch(`${ BASE_URL }/users/${ this.props.currentUser.id }`, {
+      credentials: 'include'
+    })
+    .then(response => response.json())
+    .then((currentUser) => {
+      this.setState({ currentUser: currentUser })
+    }).catch(err=> console.log(err))
   }
 
   getUsers() {
@@ -14,11 +29,9 @@ class Dashboard extends React.Component {
       credentials: 'include'
     })
     .then(response => response.json())
-    .then((currentUser) => {
-      this.setState({ currentUser: currentUser })
-    })
-    .then(theUser=>(console.log(theUser)))
-    .catch(err=> console.log(err))
+    .then((members) => {
+      this.setState({ members: members })
+    }).catch(err=> console.log(err))
   }
   render() {
 
