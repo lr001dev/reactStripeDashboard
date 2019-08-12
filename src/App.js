@@ -16,6 +16,7 @@ import './App.css';
 class App extends React.Component {
   state = {
     sessions: [],
+    temp: ''
 
   }
   componentDidMount() {
@@ -31,7 +32,28 @@ class App extends React.Component {
     .catch(err=> console.log(err))
   }
 
+  createAccount = (formInputs) => {
+    const autoLogin = {
+      user: {
+        username: formInputs.user.username,
+        password: formInputs.user.password
+      }
+    }
+    fetch(`${ BASE_URL }/users/`, {
+      body: JSON.stringify(formInputs),
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-type': 'application/json'
+      }
+    })
+    .then(this.loginTheUser(autoLogin))
+    .catch(err=> console.log(err))
+  }
+
   loginTheUser = (formInputs) => {
+    console.log("logging in")
+    console.log(formInputs)
     fetch(`${ BASE_URL }/users/login`, {
       body: JSON.stringify(formInputs),
       method: 'POST',
@@ -40,8 +62,8 @@ class App extends React.Component {
         'Accept': 'application/json, text/plain, */*',
         'Content-type': 'application/json'
       }
-    })
-      .then(userIsLoggedIn => this.setState({ user: userIsLoggedIn.json() }))
+    }).then(loginResponse => loginResponse.json())
+      .then(userIsLoggedIn => this.setState({ user: userIsLoggedIn.user }))
       .catch(error=> console.log(error))
   }
 
@@ -50,8 +72,11 @@ class App extends React.Component {
     if(this.state.user) {
       return(
         <Router>
-          <Redirect to='/dashboard' currentUser= { this.state.user } />
-          <Route path="/dashboard" component= { Dashboard } />
+          <Redirect to='/dashboard' />
+          <Route
+            path="/dashboard"
+            render= { (props) => <Dashboard { ...props } currentUser= { this.state.user } /> }
+          />
         </Router>
       )
     } else {
@@ -62,7 +87,13 @@ class App extends React.Component {
             loginTheUser = { this.loginTheUser }
           />
           <Route exact path="/" component={ Home } />
-          <Route path="/create-account" component={ CreateAccount } />
+          <Route
+            path="/create-account"
+            render= { (props) => <CreateAccount { ...props }
+            createAccount= { this.createAccount }
+            loginTheUser = { this.loginTheUser }
+          /> }
+          />
           <Route path="/signup" component={ SignUp } />
           <Footer />
         </Router>

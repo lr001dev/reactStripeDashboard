@@ -15,7 +15,7 @@ class Login extends React.Component {
       this.setState({[event.target.id] : event.target.value})
     }
 
-  handleSubmit (event, formInputs) {
+  handleSubmit (event) {
     event.preventDefault()
     const loginFormInputs = {
       user: {
