@@ -29,7 +29,7 @@ handleSubmit (event) {
       password: this.state.password,
     }
   }
-  this.props.createAccount(createAccountFormInputs, this.props.loginTheUser)
+  this.props.createAccount(createAccountFormInputs)
   this.setState({
     first_name: '',
     last_name: '',

@@ -16,8 +16,6 @@ import './App.css';
 class App extends React.Component {
   state = {
     sessions: [],
-    temp: ''
-
   }
   componentDidMount() {
     this.getSessions()
@@ -52,8 +50,6 @@ class App extends React.Component {
   }
 
   loginTheUser = (formInputs) => {
-    console.log("logging in")
-    console.log(formInputs)
     fetch(`${ BASE_URL }/users/login`, {
       body: JSON.stringify(formInputs),
       method: 'POST',
@@ -91,7 +87,6 @@ class App extends React.Component {
             path="/create-account"
             render= { (props) => <CreateAccount { ...props }
             createAccount= { this.createAccount }
-            loginTheUser = { this.loginTheUser }
           /> }
           />
           <Route path="/signup" component={ SignUp } />
