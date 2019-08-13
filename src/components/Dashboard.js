@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
   }
 
   getUser() {
-    fetch(`${ BASE_URL }/users/${ this.props.currentUser.id }`, {
+    fetch(`${ BASE_URL }/users/${ this.props.currentUser }`, {
       credentials: 'include'
     })
     .then(response => response.json())

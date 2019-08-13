@@ -59,7 +59,7 @@ class App extends React.Component {
         'Content-type': 'application/json'
       }
     }).then(loginResponse => loginResponse.json())
-      .then(userIsLoggedIn => this.setState({ user: userIsLoggedIn.user }))
+      .then(userIsLoggedIn => this.setState({ user: userIsLoggedIn.user.id }))
       .catch(error=> console.log(error))
   }
 
