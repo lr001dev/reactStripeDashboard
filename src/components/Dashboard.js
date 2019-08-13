@@ -2,16 +2,18 @@ import React, { Component } from 'react'
 import { BASE_URL } from '../constants.js'
 import { BrowserRouter as Router, Redirect, Route, Link } from 'react-router-dom'
 import DashboardProfile from './DashboardProfile'
-import DashboardMembers from './DashboardMembers'
+import DashboardCommunity from './DashboardCommunity'
 import DashboardSessions from './DashboardSessions'
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
 import '@trendmicro/react-sidenav/dist/react-sidenav.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faUsers, faCalendarWeek } from '@fortawesome/free-solid-svg-icons'
 
 class Dashboard extends React.Component {
   state = {
     currentUser: '',
     sessions: this.props.sessions,
-    members:''
+    members: ''
   }
 
   componentDidMount() {
@@ -56,15 +58,15 @@ class Dashboard extends React.Component {
                   <SideNav.Nav defaultSelected="dashboard">
                       <NavItem eventKey="dashboard">
                           <NavIcon>
-                              <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
+                            <FontAwesomeIcon icon={ faUser } />
                           </NavIcon>
                           <NavText>
-                              My Dashboard
+                           My Dashboard
                           </NavText>
                       </NavItem>
                       <NavItem eventKey="classes">
                           <NavIcon>
-                              <i className="fa fa-fw fa-device" style={{ fontSize: '1.75em' }} />
+                            <FontAwesomeIcon icon={ faCalendarWeek } />
                           </NavIcon>
                           <NavText>
                               Class Catalog
@@ -72,7 +74,7 @@ class Dashboard extends React.Component {
                       </NavItem>
                       <NavItem eventKey="community">
                           <NavIcon>
-                              <i className="fa fa-fw fa-device" style={{ fontSize: '1.75em' }} />
+                              <FontAwesomeIcon icon={ faUsers } />
                           </NavIcon>
                           <NavText>
                               Community
@@ -82,13 +84,17 @@ class Dashboard extends React.Component {
               </SideNav>
               <main>
                 <Route path="/dashboard" exact
-                  render= { (props) => <DashboardProfile { ...props } /> }
+                  render= { (props) => <DashboardProfile { ...props }
+                  currentUser= { this.state.currentUser } /> }
                 />
                 <Route path="/classes"
-                  render={ (props) => <DashboardSessions { ...props } /> }
+                  render={ (props) => <DashboardSessions { ...props }
+                  sessions= { this.state.sessions }
+                  currentUserId= { this.state.currentUser.user.id }/> }
                 />
-                <Route path="/members"
-                  render= { (props) => <DashboardMembers { ...props } /> }
+                <Route path="/community"
+                  render= { (props) => <DashboardCommunity { ...props }
+                  community= { this.state.members }/> }
                 />
               </main>
           </React.Fragment>
