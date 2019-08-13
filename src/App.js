@@ -22,7 +22,7 @@ class App extends React.Component {
   }
 
   getSessions() {
-    fetch(`${ BASE_URL }/sessions`)
+    fetch(`${ BASE_URL }/sessions/`)
     .then(response => response.json())
     .then((sessionData) => {
       this.setState({ sessions: sessionData})
