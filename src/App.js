@@ -68,9 +68,9 @@ class App extends React.Component {
     if(this.state.user) {
       return(
         <Router>
-          <Redirect to='/dashboard' />
+          <Redirect to='/dash' />
           <Route
-            path="/dashboard"
+            path="/dash"
             render= { (props) => <Dashboard { ...props }
             currentUser= { this.state.user }
             sessions= { this.state.sessions }

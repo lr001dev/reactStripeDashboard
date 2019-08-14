@@ -12,7 +12,7 @@ import { faUser, faUsers, faCalendarWeek } from '@fortawesome/free-solid-svg-ico
 
 class Dashboard extends React.Component {
   state = {
-    currentUser: '',
+
     sessions: this.props.sessions,
     members: ''
   }
@@ -51,6 +51,10 @@ class Dashboard extends React.Component {
     this.getUser()
   }
 
+  bookingDeleted = () => {
+    this.getUser()
+  }
+
 
   render() {
 
@@ -67,13 +71,13 @@ class Dashboard extends React.Component {
                   }}
               >
                   <SideNav.Toggle />
-                  <SideNav.Nav defaultSelected="dashboard">
-                      <NavItem eventKey="dashboard">
+                  <SideNav.Nav defaultSelected="dash">
+                      <NavItem eventKey="dash">
                           <NavIcon>
                             <FontAwesomeIcon icon={ faUser } />
                           </NavIcon>
                           <NavText>
-                           My Dashboard
+                            My Dashboard
                           </NavText>
                       </NavItem>
                       <NavItem eventKey="update-profile">
@@ -103,10 +107,18 @@ class Dashboard extends React.Component {
                   </SideNav.Nav>
               </SideNav>
               <main>
-                <Route path="/dashboard" exact
-                  render= { (props) => <DashboardProfile { ...props }
-                  currentUser= { this.state.currentUser } /> }
-                />
+
+                {
+                  this.state.currentUser ?
+                    <Route path="/dash" exact
+                    render= { (props) => <DashboardProfile { ...props }
+                    currentUser= { this.state.currentUser }
+                    bookingDeleted={ this.bookingDeleted } /> }
+                  /> : <div></div>
+                }
+
+                }
+
                 <Route path="/update-profile"
                   render= { (props) => <DashboardProfileUpdate { ...props }
                   currentUser= { this.state.currentUser }
