@@ -40,6 +40,7 @@ class Dashboard extends React.Component {
       this.setState({ members: members })
     }).catch(err=> console.log(err))
   }
+
   render() {
 
     return (
@@ -90,7 +91,9 @@ class Dashboard extends React.Component {
                 <Route path="/classes"
                   render={ (props) => <DashboardSessions { ...props }
                   sessions= { this.state.sessions }
-                  currentUserId= { this.state.currentUser.user.id }/> }
+                  currentUserId= { this.state.currentUser.user.id }
+                  getUser = { this.getUser }
+                  /> }
                 />
                 <Route path="/community"
                   render= { (props) => <DashboardCommunity { ...props }

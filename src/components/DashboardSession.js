@@ -15,7 +15,6 @@ class DashboardSession extends React.Component {
     event.preventDefault()
     const addDateFormInputs = {
       booking: {
-
         booked_date: this.state.date,
         session_id: this.state.session.id
       }
@@ -31,7 +30,7 @@ class DashboardSession extends React.Component {
         'Content-type': 'application/json'
       }
     })
-    .then(console.log("addedbooking"))
+    .then(this.props.getUser())
     .catch(err=> console.log(err))
   }
 
