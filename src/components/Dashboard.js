@@ -51,10 +51,15 @@ class Dashboard extends React.Component {
     this.getUser()
   }
 
-  bookingDeleted = () => {
-    this.getUser()
+  bookingDeleted = (index) => {
+    const splicedBooking = this.state.currentUser
+    splicedBooking.bookings.splice(index, 1)
+    this.setState({
+      currentUser: splicedBooking
+    })
+    console.log('spliced')
+    // this.getUser()
   }
-
 
   render() {
 
@@ -107,16 +112,13 @@ class Dashboard extends React.Component {
                   </SideNav.Nav>
               </SideNav>
               <main>
-
                 {
                   this.state.currentUser ?
-                    <Route path="/dash" exact
+                  <Route path="/dash" exact
                     render= { (props) => <DashboardProfile { ...props }
                     currentUser= { this.state.currentUser }
                     bookingDeleted={ this.bookingDeleted } /> }
-                  /> : <div></div>
-                }
-
+                  /> : null
                 }
 
                 <Route path="/update-profile"

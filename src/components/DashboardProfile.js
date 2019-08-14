@@ -7,15 +7,15 @@ class DashboardProfile extends React.Component {
     currentUser: this.props.currentUser
   }
 
-  deleteBooking = (bookingId) => {
-    fetch(`${ BASE_URL }/users/${this.state.currentUser.user.userId}/${bookingId}/`, {
+  deleteBooking = (bookingId, index) => {
+    fetch(`${ BASE_URL }/users/${this.state.currentUser.user.id}/bookings/${bookingId}/`, {
       method: 'DELETE',
       credentials: 'include',
       headers: {
         'Accept': 'application/json, text/plain, */*',
         'Content-Type': 'application/json'
       }
-    }).then(this.props.bookingDeleted())
+    }).then(this.props.bookingDeleted(index))
       .catch(err=> console.log(err))
   }
 
@@ -29,7 +29,9 @@ class DashboardProfile extends React.Component {
                 <Card key={index} body>
                   { theBooking.name }
                   <Button
-                    onClick={this.deleteBooking(theBooking.date_id)}
+                    onClick={() => {
+                      this.deleteBooking(theBooking.id, index)
+                    }}
                     variant="primary">Delete Booking
                     </Button>
                 </Card>
