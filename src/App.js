@@ -18,9 +18,18 @@ class App extends React.Component {
     sessions: [],
   }
   componentDidMount() {
+    this.checkUser()
     this.getSessions()
   }
-
+  checkUser() {
+    fetch(`${ BASE_URL }/users/check/`, {
+      credentials: 'include'
+    })
+    .then(response => response.json())
+    .then((userIsLoggedIn) => {
+      this.setState({ user: userIsLoggedIn.user })
+    }).catch(err=> console.log(err))
+  }
   getSessions() {
     fetch(`${ BASE_URL }/sessions/`)
     .then(response => response.json())
