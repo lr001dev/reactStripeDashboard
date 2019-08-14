@@ -1,22 +1,28 @@
 import React, { Component } from 'react'
+import { BASE_URL } from '../constants.js'
 import { Form, Button, Container } from 'react-bootstrap'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 class DashboardProfileUpdate extends React.Component {
   state = {
-    updateUser: ''
+    userId:'',
+    first_name: '',
+    last_name: '',
+    email: '',
+    username: '',
+    password: '' ,
   }
 
   componentDidMount() {
-    const setUser = {
+    this.setState({
+      userId: this.props.currentUser.user.id,
       first_name: this.props.currentUser.user.first_name,
       last_name: this.props.currentUser.user.last_name,
       email: this.props.currentUser.user.email,
       username: this.props.currentUser.user.username,
       password: ''
-    }
-    this.setState({ updateUser: setUser })
+    })
   }
 
   handleChange = (event) => {
@@ -34,26 +40,33 @@ class DashboardProfileUpdate extends React.Component {
         password: this.state.password,
       }
     }
-    this.props.updatesProfile()
-    this.setState({
-      first_name: '',
-      last_name: '',
-      email: '',
-      username: '',
-      password: '',
-    })
+    fetch(`${ BASE_URL }/users/${this.state.userId}`, {
+      body: JSON.stringify(updateFormInputs),
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    }).then((updatedProfile) => {
+      this.props.updatedUser()
+      this.notify()
+    }).catch(error => console.log(error))
   }
+
+  notify = () => toast("Profile Updated")
 
   render() {
     return (
       <Container >
+      <ToastContainer />
         <Form onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label>First Name</Form.Label>
             <Form.Control
               id="first_name"
               onChange={ this.handleChange }
-              value= { this.state.updateUser.first_name }
+              value= { this.state.first_name }
               type="text"
               placeholder="first name"
             />
@@ -63,7 +76,7 @@ class DashboardProfileUpdate extends React.Component {
             <Form.Label>Last Name</Form.Label>
             <Form.Control id="last_name"
               onChange={ this.handleChange }
-              value= { this.state.updateUser.last_name }
+              value= { this.state.last_name }
               type="text"
               placeholder="last name"
             />
@@ -74,7 +87,7 @@ class DashboardProfileUpdate extends React.Component {
             <Form.Control
               id="username"
               onChange={ this.handleChange }
-              value= { this.state.updateUser.username }
+              value= { this.state.username }
               type="text"
               placeholder="username"
             />
@@ -84,7 +97,7 @@ class DashboardProfileUpdate extends React.Component {
             <Form.Label>Email address</Form.Label>
             <Form.Control
               id="email" onChange={ this.handleChange }
-              value= { this.state.updateUser.email }
+              value= { this.state.email }
               type="email"
               placeholder="Enter email"
             />
@@ -97,7 +110,7 @@ class DashboardProfileUpdate extends React.Component {
             <Form.Label>Password</Form.Label>
             <Form.Control
               id="password" onChange={ this.handleChange }
-              value= { this.state.updateUser.password }
+              value= { this.state.password }
               type="password"
               placeholder="Password"
             />

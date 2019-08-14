@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
   }
 
   getUser() {
-    fetch(`${ BASE_URL }/users/${ this.props.currentUser }`, {
+    fetch(`${ BASE_URL }/users/${ this.props.currentUser }/`, {
       credentials: 'include'
     })
     .then(response => response.json())
@@ -44,6 +44,7 @@ class Dashboard extends React.Component {
 
   updatedUser = () => {
     this.getUser()
+    console.log('updated')
   }
 
   bookedSession = () => {
@@ -109,7 +110,7 @@ class Dashboard extends React.Component {
                 <Route path="/update-profile"
                   render= { (props) => <DashboardProfileUpdate { ...props }
                   currentUser= { this.state.currentUser }
-                  updatedUser={ this.state.updatedUser } /> }
+                  updatedUser={ this.updatedUser } /> }
                 />
                 <Route path="/classes"
                   render={ (props) => <DashboardSessions { ...props }
