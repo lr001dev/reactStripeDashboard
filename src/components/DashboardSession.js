@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { BASE_URL } from '../constants.js'
 import { Container, Row, Col, Card, ListGroup, ListGroupItem, Form, Button } from 'react-bootstrap'
 import DateTimePicker from 'react-datetime-picker'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 class DashboardSession extends React.Component {
   state = {
@@ -30,14 +32,20 @@ class DashboardSession extends React.Component {
         'Content-type': 'application/json'
       }
     })
-    .then(this.props.getUser())
+    .then(() => {
+      this.props.bookedSession()
+      this.notify()
+    })
     .catch(err=> console.log(err))
   }
+
+  notify = () => toast("Date Added")
 
   render() {
     return (
       <Col sm>
         <Card style={{ width: '18rem' }}>
+          <ToastContainer />
           <Card.Img variant="top" src={ this.state.session.img_url } />
           <Card.Body>
             <Card.Title>{ this.state.session.name }</Card.Title>

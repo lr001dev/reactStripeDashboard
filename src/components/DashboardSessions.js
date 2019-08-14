@@ -15,7 +15,7 @@ class DashboardSessions extends React.Component {
                 key={ theSession.id }
                 theSession={ theSession }
                 userId = { this.props.currentUserId }
-                getUser = { this.props.getUser }
+                bookedSession = { this.props.bookedSession }
               />
             )
           })
