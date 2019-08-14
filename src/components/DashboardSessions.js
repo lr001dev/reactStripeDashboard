@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import DashboardSession from './DashboardSession'
-import { Container, Row } from 'react-bootstrap'
+import { Container, Row, CardDeck } from 'react-bootstrap'
 
 class DashboardSessions extends React.Component {
 
   render() {
     return (
-      <Container>
-        <Row>
+      <Container className="sessions">
+        <h1>Book A Session Based On Your Schedule</h1>
+        <CardDeck>
         {
           this.props.sessions.map((theSession) => {
             return (
@@ -20,7 +21,7 @@ class DashboardSessions extends React.Component {
             )
           })
         }
-      </Row>
+      </CardDeck>
     </Container>
     )
   }

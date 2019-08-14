@@ -4,7 +4,8 @@ import { Container, Row, Col, Card, ListGroup, ListGroupItem } from 'react-boots
 class DashboardCommunity extends React.Component {
   render() {
     return (
-      <Container>
+      <Container className="community">
+        <h1>Community</h1>
         <Row>
         {
           this.props.community.map((member) => {

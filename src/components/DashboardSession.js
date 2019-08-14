@@ -67,7 +67,7 @@ class DashboardSession extends React.Component {
                     value= { this.state.date }
                   />
                 </Form.Group>
-                <Button type="submit" variant="primary">Add Date To Your Schedule</Button>
+                <Button type="submit" variant="outline-success">Add A Date To Your Schedule</Button>
               </Form>
             </ListGroupItem>
           </ListGroup>

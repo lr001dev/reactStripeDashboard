@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Login from './Login'
 import Sessions from './Sessions'
 import { Link } from "react-router-dom"
-import { Container, Navbar, Nav } from 'react-bootstrap'
+import { Container, Navbar, Nav, Button } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
 class Header extends React.Component {
@@ -10,7 +10,7 @@ class Header extends React.Component {
     return (
       <Container fluid>
         <Navbar fixed="top" bg="dark" variant="dark">
-          <Nav className="mr-auto">
+          <Nav className="mr-auto home-nav">
             <Navbar.Brand  href="#home">
               <img
                 alt=""
@@ -20,9 +20,8 @@ class Header extends React.Component {
                 className="d-inline-block align-top"
                 />
               </Navbar.Brand>
-              <Link to="/">Home</Link>
-              <Link to="/create-account">Create Account</Link>
-              <Link to="/signup">Sign Up</Link>
+              <Button  variant="light"><Link to="/">Home</Link></Button>
+              <Button  variant="light"><Link to="/create-account">Create Account</Link></Button>
             </Nav>
             <Login
               loginTheUser = { this.props.loginTheUser }

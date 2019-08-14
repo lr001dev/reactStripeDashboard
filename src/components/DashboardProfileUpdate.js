@@ -58,9 +58,10 @@ class DashboardProfileUpdate extends React.Component {
 
   render() {
     return (
-      <Container >
+      <Container className="update">
+      <h1>Update Profile</h1>
       <ToastContainer />
-        <Form onSubmit={this.handleSubmit}>
+        <Form className="update-form" onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label>First Name</Form.Label>
             <Form.Control

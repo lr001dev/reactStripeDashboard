@@ -5,6 +5,7 @@ import DashboardProfile from './DashboardProfile'
 import DashboardProfileUpdate from './DashboardProfileUpdate'
 import DashboardCommunity from './DashboardCommunity'
 import DashboardSessions from './DashboardSessions'
+import { Container, Col } from 'react-bootstrap'
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
 import '@trendmicro/react-sidenav/dist/react-sidenav.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,7 +14,7 @@ import { faUser, faUsers, faCalendarWeek } from '@fortawesome/free-solid-svg-ico
 class Dashboard extends React.Component {
   state = {
 
-    sessions: this.props.sessions,
+    sessions: '',
     members: ''
   }
 
@@ -28,7 +29,10 @@ class Dashboard extends React.Component {
     })
     .then(response => response.json())
     .then((currentUser) => {
-      this.setState({ currentUser: currentUser })
+      this.setState({
+        currentUser: currentUser,
+        sessions:  this.props.sessions
+      })
     }).catch(err=> console.log(err))
   }
 
@@ -67,6 +71,7 @@ class Dashboard extends React.Component {
       <Router>
       <Route render={({ location, history }) => (
           <React.Fragment>
+          <Container>
               <SideNav
                   onSelect={(selected) => {
                       const to = '/' + selected;
@@ -111,6 +116,7 @@ class Dashboard extends React.Component {
                       </NavItem>
                   </SideNav.Nav>
               </SideNav>
+
               <main>
                 {
                   this.state.currentUser ?
@@ -138,6 +144,8 @@ class Dashboard extends React.Component {
                   community= { this.state.members }/> }
                 />
               </main>
+
+          </Container>
           </React.Fragment>
       )}
       />

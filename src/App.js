@@ -101,7 +101,7 @@ class App extends React.Component {
             createAccount= { this.createAccount }
           /> }
           />
-          <Route path="/signup" component={ SignUp } />
+          
           <Footer />
         </Router>
       )

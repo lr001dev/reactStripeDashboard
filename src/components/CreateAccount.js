@@ -41,7 +41,8 @@ handleSubmit (event) {
   render() {
     return (
       <Container >
-        <Form onSubmit={this.handleSubmit}>
+      <h1>Create Account</h1>
+        <Form className="create-form" onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label>First Name</Form.Label>
             <Form.Control
