@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BASE_URL } from '../constants.js'
 import { BrowserRouter as Router, Redirect, Route, Link } from 'react-router-dom'
 import DashboardProfile from './DashboardProfile'
+import DashboardProfileUpdate from './DashboardProfileUpdate'
 import DashboardCommunity from './DashboardCommunity'
 import DashboardSessions from './DashboardSessions'
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
@@ -41,9 +42,14 @@ class Dashboard extends React.Component {
     }).catch(err=> console.log(err))
   }
 
+  updatedUser = () => {
+    this.getUser()
+  }
+
   bookedSession = () => {
     this.getUser()
   }
+
 
   render() {
 
@@ -69,6 +75,14 @@ class Dashboard extends React.Component {
                            My Dashboard
                           </NavText>
                       </NavItem>
+                      <NavItem eventKey="update-profile">
+                          <NavIcon>
+                            <FontAwesomeIcon icon={ faUser } />
+                          </NavIcon>
+                          <NavText>
+                           Update Profile
+                          </NavText>
+                      </NavItem>
                       <NavItem eventKey="classes">
                           <NavIcon>
                             <FontAwesomeIcon icon={ faCalendarWeek } />
@@ -91,6 +105,11 @@ class Dashboard extends React.Component {
                 <Route path="/dashboard" exact
                   render= { (props) => <DashboardProfile { ...props }
                   currentUser= { this.state.currentUser } /> }
+                />
+                <Route path="/update-profile"
+                  render= { (props) => <DashboardProfileUpdate { ...props }
+                  currentUser= { this.state.currentUser }
+                  updatedUser={ this.state.updatedUser } /> }
                 />
                 <Route path="/classes"
                   render={ (props) => <DashboardSessions { ...props }

@@ -1,35 +1,40 @@
 import React, { Component } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-class CreateAccount extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      first_name: '',
-      last_name: '',
-      email: '',
-      username: '',
-      password: '',
+class DashboardProfileUpdate extends React.Component {
+  state = {
+    updateUser: ''
   }
-  this.handleSubmit = this.handleSubmit.bind(this)
-  this.handleChange = this.handleChange.bind(this)
-}
-handleChange (event) {
+
+  componentDidMount() {
+    const setUser = {
+      first_name: this.props.currentUser.user.first_name,
+      last_name: this.props.currentUser.user.last_name,
+      email: this.props.currentUser.user.email,
+      username: this.props.currentUser.user.username,
+      password: ''
+    }
+    this.setState({ updateUser: setUser })
+  }
+
+  handleChange = (event) => {
     this.setState({[event.target.id] : event.target.value})
   }
 
-handleSubmit (event) {
-  event.preventDefault()
-  const createAccountFormInputs = {
-    user: {
-      first_name: this.state.first_name,
-      last_name: this.state.last_name,
-      email: this.state.email,
-      username: this.state.username,
-      password: this.state.password,
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const updateFormInputs = {
+      user: {
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
+        email: this.state.email,
+        username: this.state.username,
+        password: this.state.password,
+      }
     }
-  }
-    this.props.createAccount(createAccountFormInputs)
+    this.props.updatesProfile()
     this.setState({
       first_name: '',
       last_name: '',
@@ -38,6 +43,7 @@ handleSubmit (event) {
       password: '',
     })
   }
+
   render() {
     return (
       <Container >
@@ -47,7 +53,7 @@ handleSubmit (event) {
             <Form.Control
               id="first_name"
               onChange={ this.handleChange }
-              value= { this.state.first_name }
+              value= { this.state.updateUser.first_name }
               type="text"
               placeholder="first name"
             />
@@ -57,7 +63,7 @@ handleSubmit (event) {
             <Form.Label>Last Name</Form.Label>
             <Form.Control id="last_name"
               onChange={ this.handleChange }
-              value= { this.state.last_name }
+              value= { this.state.updateUser.last_name }
               type="text"
               placeholder="last name"
             />
@@ -68,7 +74,7 @@ handleSubmit (event) {
             <Form.Control
               id="username"
               onChange={ this.handleChange }
-              value= { this.state.username }
+              value= { this.state.updateUser.username }
               type="text"
               placeholder="username"
             />
@@ -78,7 +84,7 @@ handleSubmit (event) {
             <Form.Label>Email address</Form.Label>
             <Form.Control
               id="email" onChange={ this.handleChange }
-              value= { this.state.email }
+              value= { this.state.updateUser.email }
               type="email"
               placeholder="Enter email"
             />
@@ -91,16 +97,16 @@ handleSubmit (event) {
             <Form.Label>Password</Form.Label>
             <Form.Control
               id="password" onChange={ this.handleChange }
-              value= { this.state.password }
+              value= { this.state.updateUser.password }
               type="password"
               placeholder="Password"
             />
           </Form.Group>
-          <Button variant="primary" type="submit">Create Account</Button>
+          <Button variant="primary" type="submit">Update Profile</Button>
         </Form>
       </Container>
     )
   }
 }
 
-export default CreateAccount
+export default DashboardProfileUpdate
