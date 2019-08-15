@@ -37,10 +37,9 @@ class App extends React.Component {
     })
     .then(response => response.json())
     .then((userLogggedOut) => {
-      const newState = {
-        sessions: this.state.sessions
-      }
-      this.setState({ })
+      return(
+        <Redirect to='/' />
+      )
     }).catch(err=> console.log(err))
   }
   getSessions() {
