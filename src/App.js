@@ -40,7 +40,7 @@ class App extends React.Component {
       const newState = {
         sessions: this.state.sessions
       }
-      this.setState({ newState })
+      this.setState({[...newState] })
     }).catch(err=> console.log(err))
   }
   getSessions() {

@@ -151,10 +151,6 @@ class Dashboard extends React.Component {
                   render= { (props) => <DashboardCommunity { ...props }
                   community= { this.state.members }/> }
                 />
-
-                <Route path="/"
-
-                />
               </main>
 
           </Container>
