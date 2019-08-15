@@ -96,6 +96,7 @@ class App extends React.Component {
             render= { (props) => <Dashboard { ...props }
             currentUser= { this.state.user }
             sessions= { this.state.sessions }
+            logoutUser= { this.logoutUser }
           /> }
           />
         </Router>

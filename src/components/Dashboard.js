@@ -114,6 +114,14 @@ class Dashboard extends React.Component {
                               Community
                           </NavText>
                       </NavItem>
+                      <NavItem onClick={ this.props.logoutUser }eventKey="logout">
+                          <NavIcon>
+                              <FontAwesomeIcon icon={ faUsers } />
+                          </NavIcon>
+                          <NavText>
+                              Logout
+                          </NavText>
+                      </NavItem>
                   </SideNav.Nav>
               </SideNav>
 
