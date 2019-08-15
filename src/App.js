@@ -30,6 +30,19 @@ class App extends React.Component {
       this.setState({ user: userIsLoggedIn.user })
     }).catch(err=> console.log(err))
   }
+  logoutUser = () => {
+    fetch(`${ BASE_URL }/users/destroyCookie/`, {
+      method: 'DELETE',
+      credentials: 'include'
+    })
+    .then(response => response.json())
+    .then((userLogggedOut) => {
+      const newState = {
+        sessions: this.state.sessions
+      }
+      this.setState({ newState })
+    }).catch(err=> console.log(err))
+  }
   getSessions() {
     fetch(`${ BASE_URL }/sessions/`)
     .then(response => response.json())
