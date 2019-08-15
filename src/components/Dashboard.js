@@ -114,7 +114,7 @@ class Dashboard extends React.Component {
                               Community
                           </NavText>
                       </NavItem>
-                      <NavItem onClick={ this.props.logoutUser }eventKey="logout">
+                      <NavItem onClick={ this.props.logoutUser } eventKey="logout">
                           <NavIcon>
                               <FontAwesomeIcon icon={ faUsers } />
                           </NavIcon>
@@ -150,6 +150,10 @@ class Dashboard extends React.Component {
                 <Route path="/community"
                   render= { (props) => <DashboardCommunity { ...props }
                   community= { this.state.members }/> }
+                />
+
+                <Route path="/"
+
                 />
               </main>
 
