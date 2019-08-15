@@ -59,7 +59,7 @@ class App extends React.Component {
   }
 
   loginTheUser = (formInputs) => {
-    fetch(`${ BASE_URL }/users/login`, {
+    fetch(`${ BASE_URL }/users/login/`, {
       body: JSON.stringify(formInputs),
       method: 'POST',
       credentials: 'include',
@@ -101,7 +101,7 @@ class App extends React.Component {
             createAccount= { this.createAccount }
           /> }
           />
-          
+
           <Footer />
         </Router>
       )
