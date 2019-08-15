@@ -16,6 +16,7 @@ import './App.css';
 class App extends React.Component {
   state = {
     sessions: [],
+
   }
   componentDidMount() {
     this.checkUser()
@@ -37,9 +38,7 @@ class App extends React.Component {
     })
     .then(response => response.json())
     .then((userLogggedOut) => {
-      return(
-        <Redirect to='/' />
-      )
+      this.setState({ logout: true })
     }).catch(err=> console.log(err))
   }
   getSessions() {
@@ -85,7 +84,14 @@ class App extends React.Component {
   }
 
   render() {
-
+    if(this.state.logout){
+      return (
+        <Router>
+          <Redirect to='/' />
+          <Route path="/" />
+        </Router>
+      )
+    }
     if(this.state.user) {
       return(
         <Router>
