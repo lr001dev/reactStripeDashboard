@@ -19,6 +19,7 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
+
     this.getUser()
     this.getUsers()
   }
@@ -150,6 +151,15 @@ class Dashboard extends React.Component {
                 <Route path="/community"
                   render= { (props) => <DashboardCommunity { ...props }
                   community= { this.state.members }/> }
+                />
+                <Route path="/logout"
+                  render= { () => {
+                    this.setState({ currentUser: undefined })
+                    history.replace()
+                    return (
+                      <Redirect to='/' />
+                    )
+                  } }
                 />
               </main>
 

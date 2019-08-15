@@ -31,16 +31,17 @@ class App extends React.Component {
       this.setState({ user: userIsLoggedIn.user })
     }).catch(err=> console.log(err))
   }
+
   logoutUser = () => {
     fetch(`${ BASE_URL }/users/destroyCookie/`, {
       method: 'DELETE',
       credentials: 'include'
-    })
-    .then(response => response.json())
-    .then((userLogggedOut) => {
-      this.setState({ logout: true })
+    }).then(() => {
+      this.setState({ user: undefined })
+      this.getSessions()
     }).catch(err=> console.log(err))
   }
+
   getSessions() {
     fetch(`${ BASE_URL }/sessions/`)
     .then(response => response.json())
@@ -57,6 +58,7 @@ class App extends React.Component {
         password: formInputs.user.password
       }
     }
+
     fetch(`${ BASE_URL }/users/`, {
       body: JSON.stringify(formInputs),
       method: 'POST',
@@ -65,7 +67,11 @@ class App extends React.Component {
         'Content-type': 'application/json'
       }
     })
-    .then(this.loginTheUser(autoLogin))
+    .then((theResponse) => {
+      if(theResponse) {
+        this.loginTheUser(autoLogin)
+      }
+    })
     .catch(err=> console.log(err))
   }
 
@@ -79,19 +85,14 @@ class App extends React.Component {
         'Content-type': 'application/json'
       }
     }).then(loginResponse => loginResponse.json())
-      .then(userIsLoggedIn => this.setState({ user: userIsLoggedIn.user.id }))
+      .then((userIsLoggedIn) => {
+        this.setState({ user: userIsLoggedIn.user.id })
+      })
       .catch(error=> console.log(error))
   }
 
   render() {
-    if(this.state.logout){
-      return (
-        <Router>
-          <Redirect to='/' />
-          <Route path="/" />
-        </Router>
-      )
-    }
+
     if(this.state.user) {
       return(
         <Router>

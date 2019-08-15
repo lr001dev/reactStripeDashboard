@@ -8,7 +8,7 @@ class DashboardProfile extends React.Component {
   state = {
     currentUser: this.props.currentUser
   }
-
+  
   deleteBooking = (bookingId, index) => {
     fetch(`${ BASE_URL }/users/${this.state.currentUser.user.id}/bookings/${bookingId}/`, {
       method: 'DELETE',
