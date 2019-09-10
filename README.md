@@ -9,7 +9,11 @@ This repo contains the front end React client.
 
 # Technologies Used:
 
-React, React Router, React Bootstrap, React Toastify, FontAwesome, React SideNav, Ruby & Rails, REST API,
+React, React Router, React Bootstrap, React Toastify, FontAwesome, React SideNav, Ruby & Rails, REST API
+
+# RoadMap:
+
+Integrate Stripe Subscriptions API
 
 # Back End Repo:
 
