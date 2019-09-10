@@ -3,9 +3,8 @@ import Login from './Login'
 import Sessions from './Sessions'
 import { Link } from "react-router-dom"
 import { Container, Navbar, Nav, Button } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
 
-class Header extends React.Component {
+class Header extends Component {
   render() {
     return (
       <Container fluid>
@@ -14,9 +13,9 @@ class Header extends React.Component {
             <Navbar.Brand  href="#home">
               <img
                 alt=""
-                src="/logo.svg"
-                width="30"
-                height="30"
+                src="/images/trainer.png"
+                width="50"
+                height="50"
                 className="d-inline-block align-top"
                 />
               </Navbar.Brand>

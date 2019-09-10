@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { BASE_URL } from '../constants.js'
-import { Container, Row, Col, Card, ListGroup, ListGroupItem, Form, Button } from 'react-bootstrap'
+import { Col, Card, ListGroup, ListGroupItem, Form, Button } from 'react-bootstrap'
 import DateTimePicker from 'react-datetime-picker'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-class DashboardSession extends React.Component {
+class DashboardSession extends Component {
   state = {
     date: new Date(),
     session: this.props.theSession,

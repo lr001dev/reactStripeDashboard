@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Row, Col, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 
-class DashboardCommunity extends React.Component {
+class DashboardCommunity extends Component {
   render() {
     return (
       <Container className="community">

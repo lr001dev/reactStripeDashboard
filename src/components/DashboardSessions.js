@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import DashboardSession from './DashboardSession'
-import { Container, Row, CardDeck } from 'react-bootstrap'
+import { Container, CardDeck } from 'react-bootstrap'
 
-class DashboardSessions extends React.Component {
+class DashboardSessions extends Component {
 
   render() {
     return (

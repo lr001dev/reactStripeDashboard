@@ -4,7 +4,7 @@ import { Form, Button, Container } from 'react-bootstrap'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-class DashboardProfileUpdate extends React.Component {
+class DashboardProfileUpdate extends Component {
   state = {
     userId:'',
     first_name: '',

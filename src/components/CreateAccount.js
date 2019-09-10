@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
 
-class CreateAccount extends React.Component {
+class CreateAccount extends Component {
   constructor (props) {
     super(props)
     this.state = {

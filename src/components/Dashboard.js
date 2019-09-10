@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import { BASE_URL } from '../constants.js'
-import { BrowserRouter as Router, Redirect, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom'
 import DashboardProfile from './DashboardProfile'
 import DashboardProfileUpdate from './DashboardProfileUpdate'
 import DashboardCommunity from './DashboardCommunity'
 import DashboardSessions from './DashboardSessions'
-import { Container, Col } from 'react-bootstrap'
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
+import { Container} from 'react-bootstrap'
+import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav'
 import '@trendmicro/react-sidenav/dist/react-sidenav.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faUsers, faCalendarWeek } from '@fortawesome/free-solid-svg-icons'
 
-class Dashboard extends React.Component {
+class Dashboard extends Component {
   state = {
 
     sessions: '',
