@@ -4,11 +4,11 @@ import { Container, Card, CardDeck, Button, Table  } from 'react-bootstrap'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-class DashboardProfile extends React.Component {
+class DashboardProfile extends Component {
   state = {
     currentUser: this.props.currentUser
   }
-  
+
   deleteBooking = (bookingId, index) => {
     fetch(`${ BASE_URL }/users/${this.state.currentUser.user.id}/bookings/${bookingId}/`, {
       method: 'DELETE',
@@ -56,6 +56,11 @@ class DashboardProfile extends React.Component {
                       </Card.Footer>
                     </Card>
                 )
+              } else {
+                return(
+                  <>
+                  </>
+                )
               }
             })
         }
@@ -79,7 +84,7 @@ class DashboardProfile extends React.Component {
                 return (
                   <tr key={index}>
                     <td>{theBooking.id}</td>
-                    <td><img width="50px" src={theBooking.img_url} /></td>
+                    <td><img alt="Fitness classes" width="50px" src={theBooking.img_url} /></td>
                     <td>{theBooking.length} min</td>
                     <td>{theBooking.modality}</td>
                     <td>{theBooking.name}</td>
@@ -93,6 +98,11 @@ class DashboardProfile extends React.Component {
                       </Button>
                     </td>
                   </tr>
+                )
+              } else {
+                return(
+                  <>
+                  </>
                 )
               }
             })

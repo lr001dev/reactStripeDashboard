@@ -28,8 +28,8 @@ class Login extends Component  {
 
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Form.Row>
+      <Form  onSubmit={this.handleSubmit}>
+        <Form.Row className="login-form" >
           <Col>
             <Form.Control
               id="username"
@@ -50,7 +50,7 @@ class Login extends Component  {
           </Col>
         </Form.Row>
         <Form.Row>
-          <Button variant="primary" type="submit">Login</Button>
+          <Button className="login-button" variant="primary" type="submit">Login</Button>
         </Form.Row>
       </Form>
     )

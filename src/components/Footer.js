@@ -9,9 +9,9 @@ class Footer extends Component {
           <Navbar.Brand href="#home">
             <img
               alt=""
-              src="/logo.svg"
-              width="30"
-              height="30"
+              src="/images/trainer.png"
+              width="50"
+              height="50"
               className="d-inline-block align-top"
             />
                 {' React Fitness'}

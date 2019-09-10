@@ -19,8 +19,8 @@ class Header extends Component {
                 className="d-inline-block align-top"
                 />
               </Navbar.Brand>
-              <Button  variant="light"><Link to="/">Home</Link></Button>
-              <Button  variant="light"><Link to="/create-account">Create Account</Link></Button>
+              <Button  className="links-nav" variant="light"><Link to="/">Home</Link></Button>
+              <Button  className="links-nav" variant="light"><Link to="/create-account">Create Account</Link></Button>
             </Nav>
             <Login
               loginTheUser = { this.props.loginTheUser }
